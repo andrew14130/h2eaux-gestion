@@ -398,10 +398,9 @@ Cette étude a été réalisée selon les normes EN 12831 et RT2012
 ═══════════════════════════════════════════════════════════════════
 `;
 
-      const fileName = `etude_pac_${calcul.client_name.replace(/\s+/g, '_')}_${Date.now()}.txt`;
-      const fileUri = FileSystem.documentDirectory + fileName;
-      
-      await FileSystem.writeAsStringAsync(fileUri, contenuPDF);
+      // Stockage en AsyncStorage au lieu de FileSystem
+      const fileName = `etude_pac_${calcul.client_name.replace(/\s+/g, '_')}_${Date.now()}`;
+      await AsyncStorage.setItem(`pdf_${fileName}`, contenuPDF);
       
       Alert.alert(
         'Étude PDF Générée',

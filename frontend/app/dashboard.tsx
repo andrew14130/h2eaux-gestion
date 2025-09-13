@@ -6,12 +6,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
-// Import screens - using require for dynamic loading
-const ClientsScreen = require('../src/screens/ClientsScreen').default;
-const ChantiersScreen = require('../src/screens/ChantiersScreen').default;
-const DocumentsScreen = require('../src/screens/DocumentsScreen').default;
-const ChatScreen = require('../src/screens/ChatScreen').default;
-const ParametresScreen = require('../src/screens/ParametresScreen').default;
+// Create placeholder screens temporarily
+import ClientsScreen from '../src/screens/ClientsScreen';
+import ChantiersScreen from '../src/screens/ChantiersScreen';
+import DocumentsScreen from '../src/screens/DocumentsScreen';
+import ChatScreen from '../src/screens/ChatScreen';
+import ParametresScreen from '../src/screens/ParametresScreen';
 import { useAuthStore } from '../src/stores/authStore';
 
 const Tab = createBottomTabNavigator();

@@ -1,20 +1,18 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { MMKV } from 'react-native-mmkv';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-const storage = new MMKV();
-
 const zustandStorage = {
-  setItem: (name: string, value: string) => {
-    return storage.set(name, value);
+  setItem: async (name: string, value: string) => {
+    return await AsyncStorage.setItem(name, value);
   },
-  getItem: (name: string) => {
-    const value = storage.getString(name);
+  getItem: async (name: string) => {
+    const value = await AsyncStorage.getItem(name);
     return value ?? null;
   },
-  removeItem: (name: string) => {
-    return storage.delete(name);
+  removeItem: async (name: string) => {
+    return await AsyncStorage.removeItem(name);
   },
 };
 

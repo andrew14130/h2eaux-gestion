@@ -3,18 +3,8 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-const zustandStorage = {
-  setItem: async (name: string, value: string) => {
-    return await AsyncStorage.setItem(name, value);
-  },
-  getItem: async (name: string) => {
-    const value = await AsyncStorage.getItem(name);
-    return value ?? null;
-  },
-  removeItem: async (name: string) => {
-    return await AsyncStorage.removeItem(name);
-  },
-};
+// Configuration simple du stockage
+const zustandStorage = createJSONStorage(() => AsyncStorage);
 
 export interface User {
   id: string;

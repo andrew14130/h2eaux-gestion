@@ -10,6 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 import ClientsScreen from '../src/screens/ClientsScreen';
 import ChantiersScreen from '../src/screens/ChantiersScreen';
 import DocumentsScreen from '../src/screens/DocumentsScreen';
+import PACScreen from '../src/screens/PACScreen';
 import ChatScreen from '../src/screens/ChatScreen';
 import CalendrierScreen from '../src/screens/CalendrierScreen';
 import ParametresScreen from '../src/screens/ParametresScreen';

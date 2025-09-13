@@ -126,6 +126,17 @@ export default function DashboardScreen() {
             />
           )}
           
+          {user?.permissions.calculs_pac && (
+            <Tab.Screen 
+              name="PAC" 
+              component={PACScreen}
+              options={{
+                title: 'PAC',
+                headerTitle: 'Calculs PAC',
+              }}
+            />
+          )}
+          
           <Tab.Screen 
             name="Calendrier" 
             component={CalendrierScreen}

@@ -46,6 +46,9 @@ export default function DashboardScreen() {
       case 'Documents':
         iconName = focused ? 'document-text' : 'document-text-outline';
         break;
+      case 'PAC':
+        iconName = focused ? 'thermometer' : 'thermometer-outline';
+        break;
       case 'Calendrier':
         iconName = focused ? 'calendar' : 'calendar-outline';
         break;

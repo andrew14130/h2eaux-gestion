@@ -40,11 +40,19 @@ export default function LoginScreen() {
     }
 
     setLoading(true);
+    
     try {
+      console.log('Tentative de connexion avec:', username);
       await login(username, password);
-      router.replace('/dashboard');
+      
+      // Force navigation après succès
+      setTimeout(() => {
+        router.replace('/dashboard');
+      }, 100);
+      
     } catch (error) {
-      Alert.alert('Erreur de connexion', 'Nom d\'utilisateur ou mot de passe incorrect');
+      console.error('Erreur login:', error);
+      Alert.alert('Erreur de connexion', 'Nom d\'utilisateur ou mot de passe incorrect. Essayez: admin / admin123');
     } finally {
       setLoading(false);
     }
@@ -79,6 +87,7 @@ export default function LoginScreen() {
                 onChangeText={setUsername}
                 autoCapitalize="none"
                 autoCorrect={false}
+                testID="username-input"
               />
             </View>
 
@@ -93,6 +102,7 @@ export default function LoginScreen() {
                 secureTextEntry
                 autoCapitalize="none"
                 autoCorrect={false}
+                testID="password-input"
               />
             </View>
 
@@ -100,6 +110,8 @@ export default function LoginScreen() {
               style={[styles.loginButton, loading && styles.loginButtonDisabled]}
               onPress={handleLogin}
               disabled={loading}
+              testID="login-button"
+              activeOpacity={0.8}
             >
               {loading ? (
                 <ActivityIndicator color="#fff" />
@@ -107,6 +119,13 @@ export default function LoginScreen() {
                 <Text style={styles.loginButtonText}>Se connecter</Text>
               )}
             </TouchableOpacity>
+            
+            {/* Instructions pour l'utilisateur */}
+            <View style={styles.instructionsContainer}>
+              <Text style={styles.instructionsTitle}>Identifiants de test :</Text>
+              <Text style={styles.instructionsText}>Admin: admin / admin123</Text>
+              <Text style={styles.instructionsText}>Employé: employe1 / employe123</Text>
+            </View>
           </View>
 
           <View style={styles.footer}>
@@ -180,6 +199,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 8,
+    shadowColor: '#007AFF',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
   },
   loginButtonDisabled: {
     opacity: 0.6,
@@ -188,6 +215,23 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: '600',
+  },
+  instructionsContainer: {
+    marginTop: 24,
+    padding: 16,
+    backgroundColor: '#2a2a2a',
+    borderRadius: 12,
+  },
+  instructionsTitle: {
+    color: '#007AFF',
+    fontSize: 14,
+    fontWeight: '600',
+    marginBottom: 8,
+  },
+  instructionsText: {
+    color: '#999',
+    fontSize: 14,
+    marginBottom: 4,
   },
   footer: {
     alignItems: 'center',

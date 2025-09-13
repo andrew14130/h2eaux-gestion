@@ -134,16 +134,34 @@ export default function DashboardScreen() {
             />
           )}
           
+          <Tab.Screen 
+            name="Fiches" 
+            component={FicheTechniqueScreen}
+            options={{
+              title: 'Fiches',
+              headerTitle: 'Fiches Techniques SDB',
+            }}
+          />
+          
           {user?.permissions.calculs_pac && (
             <Tab.Screen 
               name="PAC" 
-              component={PACScreen}
+              component={PACCalculsScreen}
               options={{
                 title: 'PAC',
                 headerTitle: 'Calculs PAC',
               }}
             />
           )}
+          
+          <Tab.Screen 
+            name="MEG" 
+            component={MegIntegrationScreen}
+            options={{
+              title: 'MEG',
+              headerTitle: 'Intégration MEG',
+            }}
+          />
           
           <Tab.Screen 
             name="Calendrier" 

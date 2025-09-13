@@ -6,11 +6,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
-// Create placeholder screens temporarily
+// Import screens
 import ClientsScreen from '../src/screens/ClientsScreen';
 import ChantiersScreen from '../src/screens/ChantiersScreen';
 import DocumentsScreen from '../src/screens/DocumentsScreen';
 import ChatScreen from '../src/screens/ChatScreen';
+import CalendrierScreen from '../src/screens/CalendrierScreen';
 import ParametresScreen from '../src/screens/ParametresScreen';
 import { useAuthStore } from '../src/stores/authStore';
 
@@ -43,6 +44,9 @@ export default function DashboardScreen() {
         break;
       case 'Documents':
         iconName = focused ? 'document-text' : 'document-text-outline';
+        break;
+      case 'Calendrier':
+        iconName = focused ? 'calendar' : 'calendar-outline';
         break;
       case 'Chat':
         iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
@@ -117,6 +121,15 @@ export default function DashboardScreen() {
               }}
             />
           )}
+          
+          <Tab.Screen 
+            name="Calendrier" 
+            component={CalendrierScreen}
+            options={{
+              title: 'Calendrier',
+              headerTitle: 'Planning Chantiers',
+            }}
+          />
           
           {user?.permissions.chat && (
             <Tab.Screen 

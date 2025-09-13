@@ -344,7 +344,7 @@ export default function FicheTechniqueScreen() {
 
   const generatePDF = async (fiche: FicheTechniqueSDB) => {
     try {
-      // Simulation de génération PDF
+      // Simulation de génération PDF avec stockage AsyncStorage
       const pdfContent = `
 FICHE TECHNIQUE SALLE DE BAIN
 ==============================
@@ -384,10 +384,9 @@ Total TTC: ${fiche.calculs.total_ttc.toFixed(2)}€
 Particularités: ${fiche.particularites || 'Aucune'}
       `;
 
-      const fileName = `fiche_${fiche.client_name.replace(/\s+/g, '_')}_${Date.now()}.txt`;
-      const fileUri = FileSystem.documentDirectory + fileName;
-      
-      await FileSystem.writeAsStringAsync(fileUri, pdfContent);
+      // Stockage du PDF en AsyncStorage
+      const fileName = `fiche_${fiche.client_name.replace(/\s+/g, '_')}_${Date.now()}`;
+      await AsyncStorage.setItem(`pdf_${fileName}`, pdfContent);
       
       Alert.alert(
         'PDF Généré',
